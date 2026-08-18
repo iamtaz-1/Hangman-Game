@@ -1,0 +1,200 @@
+JAVA|Popular coding language
+PYTHON|Named after a snake
+CPP|Language with pointers
+COMPILER|Converts code to machine language
+ALGORITHM|Step by step solution
+VARIABLE|Stores changing values
+FUNCTION|Reusable code block
+LOOP|Repeats instructions
+ARRAY|Stores multiple items
+STRING|Collection of characters
+OBJECT|Instance of a class
+CLASS|Blueprint for objects
+INHERITANCE|Reuses parent properties
+ENCAPSULATION|Protects internal data
+POLYMORPHISM|Many forms of one thing
+ABSTRACTION|Hides unnecessary details
+DEBUGGING|Removing program errors
+SOFTWARE|Collection of programs
+HARDWARE|Physical computer parts
+KEYBOARD|Used for typing
+MOUSE|Computer pointing device
+MONITOR|Visual display screen
+PRINTER|Produces paper output
+SCANNER|Captures images digitally
+PROCESSOR|Brain of a computer
+MEMORY|Temporary data storage
+STORAGE|Keeps data permanently
+DATABASE|Structured data collection
+NETWORK|Connected devices system
+INTERNET|Worldwide communication network
+ROUTER|Directs data traffic
+MODEM|Connects to internet service
+SERVER|Provides resources to clients
+CLIENT|Requests services
+WEBSITE|Collection of web pages
+BROWSER|Accesses websites
+PASSWORD|Secret login text
+USERNAME|Account identifier
+SECURITY|Protects information
+ENCRYPTION|Converts data into code
+BANGLADESH|Home of the Sundarbans
+INDIA|Neighbor of Bangladesh
+JAPAN|Land of the rising sun
+CANADA|Country with maple leaf
+BRAZIL|Home of Amazon rainforest
+AUSTRALIA|Island continent
+ELEPHANT|Animal with a trunk
+TIGER|Striped big cat
+LION|King of beasts
+DOLPHIN|Intelligent sea mammal
+GIRAFFE|Animal with a long neck
+KANGAROO|Australian jumper
+PENGUIN|Flightless polar bird
+OCTOPUS|Eight-armed sea creature
+SHARK|Ocean predator
+WHALE|Largest animal alive
+APPLE|Keeps doctor away
+BANANA|Curved yellow fruit
+MANGO|King of fruits
+ORANGE|Citrus fruit
+PINEAPPLE|Spiky tropical fruit
+GRAPES|Grow in bunches
+WATERMELON|Large summer fruit
+PAPAYA|Orange tropical fruit
+COCONUT|Hard shelled fruit
+STRAWBERRY|Small red berry
+MATHEMATICS|Language of numbers
+PHYSICS|Study of matter and energy
+CHEMISTRY|Study of reactions
+BIOLOGY|Study of living things
+ENGINEERING|Applied science field
+UNIVERSITY|Higher learning institution
+STUDENT|Person who studies
+TEACHER|Guides learners
+LIBRARY|House of books
+HOSPITAL|Place for treatment
+DOCTOR|Medical expert
+NURSE|Assists patients
+PHARMACY|Medicine selling place
+AIRPORT|Aircraft departure area
+STATION|Train stopping place
+BICYCLE|Two-wheel transport
+MOTORCYCLE|Motor-powered bike
+AUTOMOBILE|Four-wheel vehicle
+AIRPLANE|Flies in the sky
+HELICOPTER|Aircraft with rotors
+SATELLITE|Orbits a planet
+TELESCOPE|Observes distant objects
+GALAXY|Collection of stars
+PLANET|Orbits a star
+EARTH|Our home world
+MOON|Earth's natural satellite
+SUN|Center of solar system
+ASTRONAUT|Travels beyond Earth
+MICROSCOPE|Views tiny objects
+BINOCULARS|Magnifies distant views
+COMPASS|Shows direction
+PARACHUTE|Slows a fall
+SUBMARINE|Travels beneath the sea
+LABORATORY|Place for experiments
+ARCHITECT|Designs buildings
+BLUEPRINT|Technical building plan
+INVENTION|A newly created idea
+RIVER|Flows toward the sea
+MOUNTAIN|Touches the clouds
+VALLEY|Between two hills
+DESERT|Very dry region
+FOREST|Home of many trees
+OCEAN|Largest water body
+ISLAND|Land surrounded by water
+VOLCANO|Mountain with lava
+GLACIER|Slow moving ice
+WATERFALL|Falling stream of water
+RAINBOW|Appears after rain
+THUNDER|Follows lightning
+LIGHTNING|Bright sky flash
+HURRICANE|Powerful tropical storm
+TORNADO|Spinning wind column
+CLOUD|Floats in the sky
+WEATHER|Changes every day
+CLIMATE|Long-term weather pattern
+SEASON|Part of a year
+SPRING|Season of blooming flowers
+SUMMER|Hottest season
+AUTUMN|Season of falling leaves
+WINTER|Coldest season
+FOOTBALL|World's most popular sport
+CRICKET|Bat and ball game
+HOCKEY|Played with sticks
+TENNIS|Racket court game
+BADMINTON|Shuttlecock sport
+VOLLEYBALL|Played over a net
+BASKETBALL|Played with hoops
+SWIMMING|Moves through water
+CYCLING|Pedal-powered travel
+RUNNING|Fast movement on foot
+MEDAL|Award for achievement
+TROPHY|Symbol of victory
+ATHLETE|Competes in sports
+REFEREE|Enforces game rules
+STADIUM|Large sports arena
+MUSIC|Art of sound
+GUITAR|Six-string instrument
+PIANO|Instrument with keys
+VIOLIN|Played with a bow
+DRUM|Beaten percussion instrument
+SINGER|Performs songs
+DANCER|Performs rhythmic movements
+ACTOR|Performs in films
+MOVIE|Motion picture
+THEATER|Place for performances
+CAMERA|Captures memories
+PHOTOGRAPH|Frozen moment in time
+PAINTING|Art on canvas
+SCULPTURE|Three-dimensional artwork
+POETRY|Written in verses
+NOVEL|Long fictional story
+MAGAZINE|Published periodically
+NEWSPAPER|Reports daily events
+JOURNAL|Personal written record
+CLOCK|Measures passing time
+CALENDAR|Tracks dates
+WATCH|Worn on wrist
+BATTERY|Stores electrical power
+ELECTRICITY|Powers devices
+MAGNET|Attracts certain metals
+ROBOT|Programmable machine
+MACHINE|Makes work easier
+FACTORY|Produces goods
+INDUSTRY|Large-scale production
+MARKET|Place of trade
+BUSINESS|Profit-oriented activity
+ECONOMY|System of trade
+BANK|Stores money safely
+CURRENCY|Used for exchange
+INVESTMENT|Money for future gain
+PROFIT|Financial gain
+LOSS|Financial setback
+CUSTOMER|Buys products
+PRODUCT|Item for sale
+SERVICE|Work done for others
+TRANSPORT|Moves people and goods
+JOURNEY|Travel from one place
+DESTINATION|Final travel point
+PASSPORT|International identity document
+TOURISM|Travel for enjoyment
+ADVENTURE|Exciting experience
+EXPLORER|Discovers new places
+ANCHOR|Prevents ship drifting
+DIAMOND|Hardest natural material
+EMERALD|Green precious gem
+FOSSIL|Ancient remains in rock
+GRAVITY|Pulls objects downward
+HORIZON|Sky meets land
+IGLOO|House made of snow
+JUNGLE|Dense wild forest
+TREASURE|Hidden valuable collection
+CHAMELEON|Animal that changes color
+LABYRINTH|Complex network of passages
+METEORITE|Rock that reaches Earth from spaceS

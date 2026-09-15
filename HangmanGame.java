@@ -19,9 +19,9 @@ public class HangmanGame extends JFrame implements ActionListener {
     private String targetWord;
     private String targetHint;
 
-    // === Week 3: Matching Logic & 3 Lives Variables ===
+    // === Week 3 & 7: Matching Logic, Lives & HashSet Tracking ===
     private char[] displayArray;
-    private HashSet<Character> guessedLetters = new HashSet<>();
+    private HashSet<Character> guessedLetters = new HashSet<>(); // Week 7: HashSet duplicate protection
     private int remainingLives = 3;
     private final int MAX_LIVES = 3;
 
@@ -94,7 +94,7 @@ public class HangmanGame extends JFrame implements ActionListener {
         // Bottom Panel Setup
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(new JLabel("Enter Letter: "));
-        
+
         inputField = new JTextField(5);
         guessButton = new JButton("Guess");
 
@@ -142,6 +142,8 @@ public class HangmanGame extends JFrame implements ActionListener {
             scanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("Error: words.txt file not found!");
+            wordList.add("JAVA");
+            hintList.add("Programming Language");
         }
     }
 
@@ -172,7 +174,7 @@ public class HangmanGame extends JFrame implements ActionListener {
         return sb.toString().trim();
     }
 
-    // === Week 3 & 5 & 6: Process Guess Input & Update Drawings ===
+    // === Week 3, 5, 6 & 7: Input Processing & HashSet Duplicate Guard ===
     private void processGuess() {
         String input = inputField.getText().trim().toUpperCase();
         inputField.setText("");
@@ -183,7 +185,9 @@ public class HangmanGame extends JFrame implements ActionListener {
 
         char letter = input.charAt(0);
 
+        // === Week 7: HashSet Duplicate Input Block ===
         if (guessedLetters.contains(letter)) {
+            statusLabel.setText("Already guessed '" + letter + "'!");
             return;
         }
 
@@ -204,7 +208,7 @@ public class HangmanGame extends JFrame implements ActionListener {
             remainingLives--;
             statusLabel.setText("Lives Left: " + remainingLives);
             statusLabel.setForeground(Color.RED);
-            
+
             // Week 5: Trigger repaint on HangmanPanel when guess is wrong
             if (hangPanel != null) {
                 hangPanel.setWrong(MAX_LIVES - remainingLives);

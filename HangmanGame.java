@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Scanner;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class HangmanGame extends JFrame implements ActionListener {
 
@@ -21,7 +24,7 @@ public class HangmanGame extends JFrame implements ActionListener {
 
     // === Week 3 & 7: Matching Logic, Lives & HashSet Tracking ===
     private char[] displayArray;
-    private HashSet<Character> guessedLetters = new HashSet<>(); // Week 7: HashSet duplicate protection
+    private HashSet<Character> guessedLetters = new HashSet<>();
     private int remainingLives = 3;
     private final int MAX_LIVES = 3;
 
@@ -30,13 +33,14 @@ public class HangmanGame extends JFrame implements ActionListener {
     private int timeLeft = 60;
     private JLabel timerLabel;
 
-    // === Week 4: Window Layout GUI Components ===
+    // === Week 4 & 10: Window Layout & GUI Polish Components ===
     private JLabel hintLabel;
     private JLabel wordLabel;
     private JLabel usedLabel;
     private JLabel statusLabel;
     private JTextField inputField;
     private JButton guessButton;
+    private JButton restartButton;
 
     // === Week 5: Custom Graphics Panel Reference ===
     private HangmanPanel hangPanel;
@@ -44,32 +48,29 @@ public class HangmanGame extends JFrame implements ActionListener {
     public HangmanGame() {
         // === Week 1: Basic Frame Setup ===
         setTitle("Hangman Game - Hard Mode (3 Lives)");
-        setSize(500, 700);
+        setSize(500, 720);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
 
-        // === Week 2: Load Data & Pick Random Word ===
+        // === Week 2 & 9: Load Data with Exception Safety ===
         loadWords("words.txt");
-        selectRandomWord();
-        initDisplayArray();
 
-        // === Week 4: Arranging Window Layout (Swing Components) ===
+        // === Week 4: Window Layout Setup ===
         setLayout(new BorderLayout(10, 10));
 
         // Top Panel Setup
         JPanel topPanel = new JPanel(new GridLayout(5, 1));
         topPanel.setBackground(new Color(245, 245, 245));
 
-        hintLabel = new JLabel("Hint: " + targetHint, SwingConstants.CENTER);
+        hintLabel = new JLabel("", SwingConstants.CENTER);
         hintLabel.setFont(new Font("SansSerif", Font.ITALIC, 15));
 
-        wordLabel = new JLabel(getFormattedDisplay(), SwingConstants.CENTER);
+        wordLabel = new JLabel("", SwingConstants.CENTER);
         wordLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
 
         usedLabel = new JLabel("Used Letters: []", SwingConstants.CENTER);
 
-        // Week 6: Timer UI Display
         timerLabel = new JLabel("Time Left: 60s", SwingConstants.CENTER);
         timerLabel.setFont(new Font("SansSerif", Font.BOLD, 15));
         timerLabel.setForeground(Color.BLACK);
@@ -86,28 +87,37 @@ public class HangmanGame extends JFrame implements ActionListener {
 
         add(topPanel, BorderLayout.NORTH);
 
-        // === Week 5: Add Custom Graphics Panel ===
+        // === Week 5: Graphics Panel ===
         hangPanel = new HangmanPanel();
         hangPanel.setBackground(Color.WHITE);
         add(hangPanel, BorderLayout.CENTER);
 
-        // Bottom Panel Setup
+        // Bottom Control Panel
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(new JLabel("Enter Letter: "));
 
         inputField = new JTextField(5);
         guessButton = new JButton("Guess");
+        restartButton = new JButton("Restart");
 
         bottomPanel.add(inputField);
         bottomPanel.add(guessButton);
+        bottomPanel.add(restartButton);
 
         add(bottomPanel, BorderLayout.SOUTH);
 
-        // === Week 6: Action Listeners & Timer Implementation ===
+        // Listeners
         guessButton.addActionListener(this);
         inputField.addActionListener(this);
 
-        // Week 6: 60-second Countdown Timer
+        restartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetGame();
+            }
+        });
+
+        // === Week 6 & 9: Countdown Timer & Timeout Handling ===
         gameTimer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,13 +129,47 @@ public class HangmanGame extends JFrame implements ActionListener {
                     statusLabel.setForeground(Color.RED);
                     wordLabel.setText(targetWord);
                     disableInputs();
+                    playSound("gameover.wav");
                 }
             }
         });
+
+        resetGame();
+    }
+
+    // === Week 10: Game Reset Method ===
+    private void resetGame() {
+        if (gameTimer != null) {
+            gameTimer.stop();
+        }
+
+        remainingLives = MAX_LIVES;
+        timeLeft = 60;
+        guessedLetters.clear();
+
+        selectRandomWord();
+        initDisplayArray();
+
+        hintLabel.setText("Hint: " + targetHint);
+        wordLabel.setText(getFormattedDisplay());
+        usedLabel.setText("Used Letters: []");
+        timerLabel.setText("Time Left: 60s");
+        statusLabel.setText("Lives Left: " + remainingLives);
+        statusLabel.setForeground(Color.BLUE);
+
+        if (hangPanel != null) {
+            hangPanel.setWrong(0);
+        }
+
+        inputField.setEnabled(true);
+        guessButton.setEnabled(true);
+        inputField.setText("");
+        inputField.requestFocus();
+
         gameTimer.start();
     }
 
-    // === Week 2: File Reading (loadWords) ===
+    // === Week 2 & 9: File Reading & Fallback Handling ===
     private void loadWords(String fileName) {
         try {
             Scanner scanner = new Scanner(new File(fileName));
@@ -141,13 +185,14 @@ public class HangmanGame extends JFrame implements ActionListener {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            System.out.println("Error: words.txt file not found!");
+            System.out.println("Warning: words.txt missing! Loading fallback words.");
             wordList.add("JAVA");
             hintList.add("Programming Language");
+            wordList.add("SWING");
+            hintList.add("GUI Toolkit");
         }
     }
 
-    // === Week 2: Random Selection ===
     private void selectRandomWord() {
         if (!wordList.isEmpty()) {
             int randomIndex = new Random().nextInt(wordList.size());
@@ -156,7 +201,6 @@ public class HangmanGame extends JFrame implements ActionListener {
         }
     }
 
-    // === Week 3: Logic Helpers ===
     private void initDisplayArray() {
         if (targetWord != null) {
             displayArray = new char[targetWord.length()];
@@ -174,7 +218,7 @@ public class HangmanGame extends JFrame implements ActionListener {
         return sb.toString().trim();
     }
 
-    // === Week 3, 5, 6 & 7: Input Processing & HashSet Duplicate Guard ===
+    // === Week 3, 7 & 8: Input Processing & Audio Logic (Fixed Overlap) ===
     private void processGuess() {
         String input = inputField.getText().trim().toUpperCase();
         inputField.setText("");
@@ -185,7 +229,6 @@ public class HangmanGame extends JFrame implements ActionListener {
 
         char letter = input.charAt(0);
 
-        // === Week 7: HashSet Duplicate Input Block ===
         if (guessedLetters.contains(letter)) {
             statusLabel.setText("Already guessed '" + letter + "'!");
             return;
@@ -204,32 +247,57 @@ public class HangmanGame extends JFrame implements ActionListener {
 
         if (isCorrect) {
             wordLabel.setText(getFormattedDisplay());
+            playSound("correct.wav");
         } else {
             remainingLives--;
             statusLabel.setText("Lives Left: " + remainingLives);
             statusLabel.setForeground(Color.RED);
 
-            // Week 5: Trigger repaint on HangmanPanel when guess is wrong
             if (hangPanel != null) {
                 hangPanel.setWrong(MAX_LIVES - remainingLives);
+            }
+
+            // Audio Fix: লাইফ থাকলে wrong.wav বাজবে, ০ হয়ে গেলে gameover.wav বাজবে
+            if (remainingLives > 0) {
+                playSound("wrong.wav");
+            } else {
+                playSound("gameover.wav");
             }
         }
 
         checkWinLoseCondition();
     }
 
-    // === Week 3 & 6: Check Win/Lose & Stop Timer ===
+    // === Week 8: Audio Player Method ===
+    public void playSound(String fileName) {
+        try {
+            File soundFile = new File(fileName);
+            if (soundFile.exists()) {
+                AudioInputStream audioInput = AudioSystem.getAudioInputStream(soundFile);
+                Clip clip = AudioSystem.getClip();
+                clip.open(audioInput);
+                clip.start();
+            }
+        } catch (Exception e) {
+            // Silence sound exceptions
+        }
+    }
+
+    // === Week 3 & 10: Win/Lose Condition & Status Color ===
     private void checkWinLoseCondition() {
         if (String.valueOf(displayArray).equals(targetWord)) {
             gameTimer.stop();
             statusLabel.setText("YOU WIN! Correct Word: " + targetWord);
             statusLabel.setForeground(new Color(0, 128, 0));
             disableInputs();
+            playSound("correct.wav");
         } else if (remainingLives <= 0) {
             gameTimer.stop();
             statusLabel.setText("YOU LOSE! Correct Word was: " + targetWord);
+            statusLabel.setForeground(Color.RED);
             wordLabel.setText(targetWord);
             disableInputs();
+            // gameover.wav is handled in processGuess to prevent audio overlap
         }
     }
 

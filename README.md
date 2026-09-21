@@ -22,6 +22,7 @@ This application provides a full-featured classic Hangman gameplay experience wi
 - **IDE:** NetBeans / Eclipse / VS Code
 
 ## 📁 Repository Structure
+```
 ├── HangmanGame.java       # Main application window, timer, and core game logic
 ├── HangmanPanel.java      # Custom Graphics2D panel for stickman and gallows
 ├── words.txt              # Text file containing word list and hints
@@ -29,7 +30,7 @@ This application provides a full-featured classic Hangman gameplay experience wi
 ├── wrong.wav              # Sound effect for wrong letter guess
 ├── gameover.wav           # Sound effect played on losing the game
 └── README.md              # Project documentation file
-
+```
 ## ⚙️ How to Run
 1. Clone this repository or download the source code:
    git clone https://github.com/iamtaz-1/Hangman-Game.git
